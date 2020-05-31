@@ -35,29 +35,38 @@
                                         >
                                     </v-avatar>
                                 </v-col>
-                                <v-col cols="11" class="pa-0 d-flex flex-column" :class="{ 'justify-end order-first' : message.is_mine}">
-                                        <v-card
-                                            fluid
-                                            class="pt-1 pb-1 d-flex align-center"
-                                            :class="{ 'align-self-end primary' : message.is_mine }"
-                                        >
-                                            <v-card-text
-                                                class="pt-1 pb-1"
-                                                :class="{ 'white--text' : message.is_mine }"
-                                            >{{ message.text }}
-                                            </v-card-text>
-                                        </v-card>
-                                        <p
-                                            class="caption grey--text mb-0"
-                                            :class="{ 'align-self-end' : message.is_mine }"
-                                        >10:20 AM</p>
+                                <v-col cols="11" class="pa-0 d-flex flex-column"
+                                       :class="{ 'justify-end order-first' : message.is_mine}">
+                                    <v-card
+                                        fluid
+                                        class="pt-1 pb-1 d-flex align-center"
+                                        :class="{ 'align-self-end primary' : message.is_mine }"
+                                    >
+                                        <v-card-text
+                                            class="pt-1 pb-1"
+                                            :class="{ 'white--text' : message.is_mine }"
+                                        >{{ message.text }}
+                                        </v-card-text>
+                                    </v-card>
+                                    <p
+                                        class="caption grey--text mb-0"
+                                        :class="{ 'align-self-end' : message.is_mine }"
+                                    >10:20 AM</p>
                                 </v-col>
                             </v-row>
                         </v-col>
                     </v-row>
                     <v-row class="chat__form">
-                        <v-col cols="1">
-
+                        <v-col cols="1" class="pt-0 pb-0 pr-0 pl-5 d-flex align-center justify-space-between">
+                            <v-icon
+                                size="18"
+                            >{{ icons.mdiFaceOutline }}</v-icon>
+                            <label>
+                                <input type="file" class="d-none">
+                                <v-icon
+                                    size="20"
+                                >{{ icons.mdiAttachment }}</v-icon>
+                            </label>
                         </v-col>
                         <v-col cols="9" class="pt-0 pb-0 d-flex align-center">
                             <v-text-field
@@ -67,7 +76,8 @@
                                 hide-details
                                 clearable
                                 single-line
-                                label="Message"
+                                label="Type your message here..."
+                                class="body-2 message-placeholder"
                                 :loading="sending"
                                 v-model="message"
                                 @keypress.enter="sendMessage"
@@ -75,10 +85,11 @@
                         </v-col>
                         <v-col cols="2">
                             <v-btn
+                                class="text-none"
                                 :loading="sending"
                                 color="primary"
                                 @click="sendMessage"
-                            >Send
+                            ><i class="fab fa-telegram-plane mr-2"></i>Send
                             </v-btn>
                         </v-col>
                     </v-row>
@@ -89,12 +100,21 @@
 </template>
 
 <script>
+    import {
+        mdiAttachment,
+        mdiFaceOutline
+    } from '@mdi/js';
+
     export default {
         name: "Chat",
         data: () => ({
             messages: [],
             message: "",
             sending: false,
+            icons : {
+                mdiAttachment,
+                mdiFaceOutline
+            }
         }),
         mounted() {
             Echo.channel('chat')
@@ -146,6 +166,16 @@
         .chat__form {
             height: 60px;
             background: #fff;
+
+            .attach-file .v-input__control {
+                    display: none;
+            }
+
+            .message-placeholder {
+                &::placeholder {
+                    font-size: $body-2;
+                }
+            }
         }
     }
 </style>
