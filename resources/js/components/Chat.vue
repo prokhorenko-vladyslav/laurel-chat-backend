@@ -173,7 +173,7 @@
 
             .message-placeholder {
                 &::placeholder {
-                    font-size: $body-2;
+                    font-size: 14px;
                 }
             }
         }
