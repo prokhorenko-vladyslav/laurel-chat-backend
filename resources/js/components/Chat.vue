@@ -1,20 +1,16 @@
 <template>
-    <v-app>
+    <v-app class="chat-application">
         <chat-navigation></chat-navigation>
 
         <v-app-bar app v-if="$route.meta.hasAppBar">
             awdawdawd
         </v-app-bar>
 
-        <v-content>
+        <v-content class="chat__content">
             <v-container fluid>
 
             </v-container>
         </v-content>
-
-        <v-footer app>
-            <!-- -->
-        </v-footer>
     </v-app>
 </template>
 
@@ -30,5 +26,14 @@
 </script>
 
 <style lang="scss" scoped>
+    .chat-application {
+        max-height: 100vh;
+        overflow: hidden;
+        display: flex;
 
+        ::v-deep .v-application--wrap {
+            display: flex;
+            flex-direction: row;
+        }
+    }
 </style>

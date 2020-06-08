@@ -43,7 +43,7 @@
 
         <v-divider></v-divider>
 
-        <div class="sections">
+        <div class="sections" @scroll="onInfinityScroll">
             <v-list
                 class="groups section"
                 dense
@@ -65,6 +65,9 @@
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
+                    <div class="d-flex justify-center mt-1">
+                        <v-btn text color="primary" small>Show more</v-btn>
+                    </div>
                 </v-list-item-group>
             </v-list>
 
@@ -76,7 +79,6 @@
                     class="section__header d-flex justify-space-between pl-4 pr-4"
                 >
                     <div class="text-uppercase subtitle-2">Chats</div>
-                    <div class="title">+</div>
                 </v-subheader>
                 <v-list-item-group color="primary">
                     <v-list-item
@@ -94,6 +96,9 @@
                             <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
+                    <div class="d-flex justify-center mt-1">
+                        <v-btn text color="primary" small>Show more</v-btn>
+                    </div>
                 </v-list-item-group>
             </v-list>
 
@@ -107,21 +112,25 @@
                     <div class="text-uppercase subtitle-2">Contacts</div>
                     <div class="title">+</div>
                 </v-subheader>
-                <v-list-item-group color="primary">
+                <v-list-item-group color="primary" class="section__content">
                     <v-list-item
                         v-for="(contact, index) in contacts"
                         :key="index"
                         class="section__item pl-4 pr-4"
                     >
-                        <v-list-item-avatar>
-                            <v-img :src="contact.avatar"></v-img>
-                        </v-list-item-avatar>
+                        <v-avatar size="36" :color="contact.color" class="mr-3">
+                            <v-img :src="contact.avatar" v-if="contact.avatar"></v-img>
+                            <span class="white--text caption" v-else>{{ createInitials(contact.name) }}</span>
+                        </v-avatar>
                         <v-list-item-content class="section__item__content pt-0 pb-0">
                             <v-list-item-title class="section__item__title subtitle-2">{{ contact.name }}
                             </v-list-item-title>
                             <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
+                    <div class="d-flex justify-center mt-1">
+                        <v-btn text color="primary" small>Show more</v-btn>
+                    </div>
                 </v-list-item-group>
             </v-list>
         </div>
@@ -230,12 +239,19 @@
                 });
 
                 return initials.trim();
+            },
+            onInfinityScroll(event) {
+                console.log(event);
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    ::v-deep .v-navigation-drawer__content {
+        overflow: hidden;
+    }
+
     .search {
         ::v-deep {
             .v-input__slot {
@@ -283,11 +299,18 @@
     }
 
     .sections {
-        height: calc(100vh - 100px);
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 60px);
         overflow: auto;
     }
 
     .section {
+        .section__content {
+            height: 100%;
+        overflow: auto;
+        }
+
         .section__header {
             height: 30px;
             color: #475F7B;
