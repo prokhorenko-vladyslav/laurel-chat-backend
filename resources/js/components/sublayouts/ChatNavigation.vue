@@ -1,7 +1,7 @@
 <template>
     <v-navigation-drawer
         permanent
-        width="290"
+        width="350"
     >
         <v-row class="d-flex justify-center align-center">
             <v-col cols="2">
@@ -230,7 +230,7 @@
         methods: {
             createInitials(name) {
                 let initials = '';
-                name.split(' ').forEach( (part, index) => {
+                name.split(' ').forEach((part, index) => {
                     if (index > 2) {
                         return;
                     }
@@ -308,7 +308,7 @@
     .section {
         .section__content {
             height: 100%;
-        overflow: auto;
+            overflow: auto;
         }
 
         .section__header {

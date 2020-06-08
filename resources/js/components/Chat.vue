@@ -2,15 +2,15 @@
     <v-app class="chat-application">
         <chat-navigation></chat-navigation>
 
-        <v-app-bar app v-if="$route.meta.hasAppBar">
-            awdawdawd
-        </v-app-bar>
+        <div class="chat__main">
+            <v-app-bar app v-if="$route.meta.hasAppBar">
+                awdawdawd
+            </v-app-bar>
 
-        <v-content class="chat__content">
-            <v-container fluid>
-
-            </v-container>
-        </v-content>
+            <v-content class="chat__content">
+                <router-view></router-view>
+            </v-content>
+        </div>
     </v-app>
 </template>
 
@@ -34,6 +34,16 @@
         ::v-deep .v-application--wrap {
             display: flex;
             flex-direction: row;
+        }
+
+        .chat__main {
+            width: 100%;
+            height: 100%;
+
+            .chat__content {
+                width: 100%;
+                height: 100%;
+            }
         }
     }
 </style>
