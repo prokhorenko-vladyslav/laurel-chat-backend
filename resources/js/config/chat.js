@@ -7,11 +7,12 @@ const LaurelChat = {
     routes: [
         {
             path: '/',
+            name : 'chat.main',
             component: StartPage,
-
         },
         {
-            path: '/conference/:userId',
+            path: '/conference/:conferenceId',
+            name : 'chat.conference',
             component: Conference,
             meta : {
                 hasAppBar : true

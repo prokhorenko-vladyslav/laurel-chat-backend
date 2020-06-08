@@ -43,7 +43,7 @@
 
         <v-divider></v-divider>
 
-        <div class="sections" @scroll="onInfinityScroll">
+        <div class="sections">
             <v-list
                 class="groups section"
                 dense
@@ -59,13 +59,14 @@
                         v-for="(group, index) in groups"
                         :key="index"
                         class="section__item pl-4 pr-4"
+                        :to="{ name: 'chat.conference', params: { conferenceId : 1 } }"
                     >
                         <v-list-item-content class="pt-0 pb-0">
                             <v-list-item-title class="section__item__title subtitle-2"># {{ group.name }}
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-                    <div class="d-flex justify-center mt-1">
+                    <div class="d-flex justify-center mt-3">
                         <v-btn text color="primary" small>Show more</v-btn>
                     </div>
                 </v-list-item-group>
@@ -85,6 +86,7 @@
                         v-for="(chat, index) in chats"
                         :key="index"
                         class="section__item pl-4 pr-4"
+                        :to="{ name: 'chat.conference', params: { conferenceId : 1 } }"
                     >
                         <v-avatar size="36" :color="chat.color" class="mr-3">
                             <v-img :src="chat.avatar" v-if="chat.avatar"></v-img>
@@ -96,7 +98,7 @@
                             <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
-                    <div class="d-flex justify-center mt-1">
+                    <div class="d-flex justify-center mt-3">
                         <v-btn text color="primary" small>Show more</v-btn>
                     </div>
                 </v-list-item-group>
@@ -117,6 +119,7 @@
                         v-for="(contact, index) in contacts"
                         :key="index"
                         class="section__item pl-4 pr-4"
+                        :to="{ name: 'chat.conference', params: { conferenceId : 1 } }"
                     >
                         <v-avatar size="36" :color="contact.color" class="mr-3">
                             <v-img :src="contact.avatar" v-if="contact.avatar"></v-img>
@@ -128,7 +131,7 @@
                             <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
-                    <div class="d-flex justify-center mt-1">
+                    <div class="d-flex justify-center mt-3">
                         <v-btn text color="primary" small>Show more</v-btn>
                     </div>
                 </v-list-item-group>
@@ -239,9 +242,6 @@
                 });
 
                 return initials.trim();
-            },
-            onInfinityScroll(event) {
-                console.log(event);
             }
         }
     }
@@ -301,7 +301,7 @@
     .sections {
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 60px);
+        height: calc(100vh - 40px);
         overflow: auto;
     }
 
