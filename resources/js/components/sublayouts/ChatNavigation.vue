@@ -67,7 +67,7 @@
                         </v-list-item-content>
                     </v-list-item>
                     <div class="d-flex justify-center mt-3">
-                        <v-btn text color="primary" small>Show more</v-btn>
+                        <v-btn text color="primary" small class="text-capitalize">Load more</v-btn>
                     </div>
                 </v-list-item-group>
             </v-list>
@@ -95,11 +95,11 @@
                         <v-list-item-content class="section__item__content pt-0 pb-0">
                             <v-list-item-title class="section__item__title subtitle-2">{{ chat.name }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
+                            <v-list-item-subtitle class="font-weight-regular">Secondary text</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
                     <div class="d-flex justify-center mt-3">
-                        <v-btn text color="primary" small>Show more</v-btn>
+                        <v-btn text color="primary" small class="text-capitalize">Load more</v-btn>
                     </div>
                 </v-list-item-group>
             </v-list>
@@ -128,11 +128,11 @@
                         <v-list-item-content class="section__item__content pt-0 pb-0">
                             <v-list-item-title class="section__item__title subtitle-2">{{ contact.name }}
                             </v-list-item-title>
-                            <v-list-item-subtitle>Secondary text</v-list-item-subtitle>
+                            <v-list-item-subtitle class="font-weight-regular">Secondary text</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
                     <div class="d-flex justify-center mt-3">
-                        <v-btn text color="primary" small>Show more</v-btn>
+                        <v-btn text color="primary" small class="text-capitalize">Load more</v-btn>
                     </div>
                 </v-list-item-group>
             </v-list>
@@ -321,6 +321,7 @@
             min-height: 42px;
 
             .section__item__title {
+                height: 20px;
                 color: #475F7B;
             }
         }

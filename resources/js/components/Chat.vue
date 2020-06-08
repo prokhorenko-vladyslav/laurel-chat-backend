@@ -38,14 +38,22 @@
 </script>
 
 <style lang="scss" scoped>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap');
+
     .chat-application {
         max-height: 100vh;
         overflow: hidden;
         display: flex;
 
-        ::v-deep .v-application--wrap {
-            display: flex;
-            flex-direction: row;
+        ::v-deep {
+            * {
+                font-family: 'IBM Plex Sans', sans-serif !important;
+            }
+
+            .v-application--wrap {
+                display: flex;
+                flex-direction: row;
+            }
         }
 
         .chat__main {

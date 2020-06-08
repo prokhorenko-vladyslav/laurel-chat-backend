@@ -6,20 +6,37 @@
             >
                 <div class="message d-flex mb-3 mt-3" :class="{ message_mine : message.is_mine }">
                     <div class="message__user d-flex justify-center align-center mb-5">
-                        <v-avatar size="36" :color="message.user.color" :class="{ 'ml-3' : message.is_mine, 'mr-3' : !message.is_mine, }">
+                        <v-avatar size="36" :color="message.user.color"
+                                  :class="{ 'ml-3' : message.is_mine, 'mr-3' : !message.is_mine, }">
                             <v-img :src="chat.avatar" v-if="message.user.avatar"></v-img>
                             <span class="white--text caption" v-else>{{ createInitials(message.user.name) }}</span>
                         </v-avatar>
                     </div>
                     <div class="message__content">
                         <div class="message__text pt-4 pb-4 pl-3 pr-3 body-2">{{ message.text }}</div>
-                        <div class="message__time d-flex justify-end caption">{{ message.updated_at }}</div>
+                        <div class="message__time d-flex justify-end caption mt-1">{{ message.updated_at }}</div>
                     </div>
                 </div>
             </template>
         </div>
-        <div class="conference__form pa-3">
-            Form
+        <div class="conference__form pa-3 d-flex align-center">
+            <v-row class="align-center">
+                <v-col cols="1" class="pa-0 d-flex justify-center conference__form__icon">
+                    <img src="/storage/icons/smiles.svg" alt="Smiles" class="ml-4 mr-4">
+                    <img src="/storage/icons/attachment.svg" alt="Attachment">
+                </v-col>
+                <v-col cols="9" class="pa-0 d-flex justify-center pl-4 conference__form__input">
+                    <v-text-field
+                        placeholder="Type your message here..."
+                    ></v-text-field>
+                </v-col>
+                <v-col cols="2" class="pa-0 d-flex justify-center conference__form__submit">
+                    <v-btn color="primary">
+                        <img src="/storage/icons/paper-plane.svg" alt="Send" class="mr-2">
+                        <span class="text-capitalize font-weight-regular">Send</span>
+                    </v-btn>
+                </v-col>
+            </v-row>
         </div>
     </div>
 </template>
@@ -163,7 +180,7 @@
                     }
 
                     .message__time {
-
+                        color: #828D99;
                     }
                 }
             }
@@ -177,6 +194,39 @@
             height: 60px;
             border-top: 1px solid rgba(0, 0, 0, .12);
             background: #fff;
+
+            .conference__form__icon {
+                img {
+                    height: 18px;
+                    max-width: 18px;
+                    cursor: pointer;
+                }
+            }
+
+            .conference__form__input {
+                ::v-deep {
+                    .v-text-field:hover {
+                        .v-input__slot {
+                            &::before {
+                                border-color: rgba(71, 95, 123, 1);
+                            }
+                        }
+                    }
+
+                    .v-input__slot {
+                        &::before {
+                            border-color: rgba(71, 95, 123, .5);
+                        }
+                    }
+                }
+            }
+
+            .conference__form__submit {
+                img {
+                    height: 16px;
+                    max-width: 16px;
+                }
+            }
         }
     }
 </style>
