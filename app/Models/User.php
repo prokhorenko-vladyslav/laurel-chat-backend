@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -59,6 +61,18 @@ class User extends Authenticatable
 
     public function tokens(): HasMany
     {
-        return $this->hasMany(UserToken::class);
+        return $this->hasMany(Token::class);
+    }
+
+    public function generateToken(): string
+    {
+        return $this->tokens()->create([
+            'token' => Str::random(255)
+        ])->token;
+    }
+
+    public static function current(): self
+    {
+        return Auth::user();
     }
 }

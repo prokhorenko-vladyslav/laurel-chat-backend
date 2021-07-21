@@ -10,6 +10,10 @@ class Token extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'token'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

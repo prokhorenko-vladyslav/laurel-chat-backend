@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Abstracts\Action;
+
+class {{ class }} extends Action
+{
+    protected function handle(DTO $dto)
+    {
+        //
+    }
+}
