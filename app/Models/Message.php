@@ -10,6 +10,10 @@ class Message extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'text'
+    ];
+
     public function chat(): BelongsTo
     {
         return $this->belongsTo(Chat::class);
@@ -18,5 +22,10 @@ class Message extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function isOwner(int $userId): bool
+    {
+        return $this->user_id === $userId;
     }
 }

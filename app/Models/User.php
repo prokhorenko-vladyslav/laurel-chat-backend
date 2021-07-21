@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function chats(): BelongsToMany
     {
-        return $this->belongsToMany(Chat::class);
+        return $this->belongsToMany(Chat::class)->withTimestamps();
     }
 
     public function messages(): HasMany
@@ -71,8 +71,13 @@ class User extends Authenticatable
         ])->token;
     }
 
-    public static function current(): self
+    public static function current(): ?self
     {
         return Auth::user();
+    }
+
+    public static function currentId(): ?int
+    {
+        return self::current()->id;
     }
 }
