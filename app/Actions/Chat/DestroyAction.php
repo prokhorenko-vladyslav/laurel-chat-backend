@@ -10,6 +10,7 @@ class DestroyAction extends Action
     protected function handle(DestroyDTO $dto)
     {
         $dto->getChat()->messages()->delete();
+        $dto->getChat()->members()->sync([]);
         $dto->getChat()->delete();
     }
 }

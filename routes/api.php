@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ChatMemberController;
 use App\Http\Controllers\MessageController;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Http\Request;
@@ -31,4 +32,6 @@ Route::prefix('auth')->group(function() {
 Route::middleware([ AuthMiddleware::class ])->group(function() {
     Route::apiResource('chat', ChatController::class);
     Route::apiResource('chat.message', MessageController::class);
+    Route::post('chat/{chat}/member/{user}', [ ChatMemberController::class, 'join' ])->name('chat.member.join');
+    Route::delete('chat/{chat}/member/{user}', [ ChatMemberController::class, 'leave' ])->name('chat.member.leave');
 });
